@@ -1,0 +1,14 @@
+{
+  "name": "工资代发银行",
+  "path": "/salary/batches",
+  "lookup": "/salary/batches/",
+  "id": "salaryInstruction",
+  "group": "lines",
+  "key": "Batch-Request-Id",
+  "modes": [
+    "accepted",
+    "rejected",
+    "accepted_disconnect",
+    "pending"
+  ]
+}

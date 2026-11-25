@@ -1,0 +1,14 @@
+{
+  "name": "wage-disbursement",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "22.23.4"
+  },
+  "scripts": {
+    "start:partner": "node support/peer.mjs",
+    "build": "node --check support/peer.mjs && node --check tests/partner.test.mjs",
+    "test": "node --test tests/*.test.mjs"
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "projects": [
+    {
+      "id": "PJ-1",
+      "budgetMinor": 120000000,
+      "laborRatio": "0.20",
+      "plannedMonths": 12
+    },
+    {
+      "id": "PJ-2",
+      "budgetMinor": 60000000,
+      "laborRatio": "0.18",
+      "plannedMonths": 10
+    }
+  ],
+  "workers": [
+    {
+      "id": "WK-1",
+      "name": "周平",
+      "account": "AC-1"
+    },
+    {
+      "id": "WK-2",
+      "name": "周平",
+      "account": "AC-2"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "AC-1",
+      "owner": "WK-1"
+    },
+    {
+      "id": "AC-2",
+      "owner": "WK-2"
+    },
+    {
+      "id": "AC-3",
+      "owner": "WK-1"
+    }
+  ],
+  "workLines": [
+    {
+      "id": "WL-1",
+      "worker": "WK-1",
+      "project": "PJ-1",
+      "subcontractor": "SUB-A",
+      "month": "2026-11",
+      "amountMinor": 600000,
+      "signed": true
+    },
+    {
+      "id": "WL-2",
+      "worker": "WK-1",
+      "project": "PJ-1",
+      "subcontractor": "SUB-B",
+      "month": "2026-11",
+      "amountMinor": 80000,
+      "signed": true
+    },
+    {
+      "id": "WL-3",
+      "worker": "WK-2",
+      "project": "PJ-1",
+      "subcontractor": "SUB-A",
+      "month": "2026-11",
+      "amountMinor": 520000,
+      "signed": false
+    }
+  ],
+  "fundReceipts": [
+    {
+      "id": "FR-1",
+      "project": "PJ-1",
+      "amountMinor": 1000000,
+      "kind": "advance",
+      "bankRef": "BR-1"
+    }
+  ],
+  "actors": [
+    {
+      "id": "general",
+      "role": "contractor",
+      "project": "PJ-1"
+    },
+    {
+      "id": "engineer",
+      "role": "supervisor",
+      "project": "PJ-1"
+    },
+    {
+      "id": "owner",
+      "role": "payer",
+      "project": "PJ-1"
+    },
+    {
+      "id": "worker-1",
+      "role": "worker",
+      "worker": "WK-1"
+    }
+  ],
+  "sourceChanges": [
+    {
+      "id": "CARD-UPDATE",
+      "worker": "WK-1",
+      "newAccount": "AC-3",
+      "requestedBy": "worker-1"
+    },
+    {
+      "id": "WORK-CORRECTION",
+      "replaces": "WL-1",
+      "worker": "WK-1",
+      "project": "PJ-1",
+      "subcontractor": "SUB-A",
+      "month": "2026-11",
+      "amountMinor": 650000,
+      "signed": true
+    },
+    {
+      "id": "WORK-SIGNED",
+      "workLine": "WL-3",
+      "worker": "WK-2",
+      "signed": true
+    },
+    {
+      "id": "MONTH-APPLICATION",
+      "project": "PJ-1",
+      "month": "2026-11",
+      "basis": "average-labor",
+      "amountMinor": 2000000
+    },
+    {
+      "id": "BANK-IN-2",
+      "project": "PJ-1",
+      "amountMinor": 800000,
+      "bankRef": "BR-2"
+    }
+  ]
+}

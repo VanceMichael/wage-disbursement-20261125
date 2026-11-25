@@ -1,0 +1,32 @@
+[
+  {
+    "table": "workers",
+    "field": "account",
+    "target": "accounts",
+    "nullable": false
+  },
+  {
+    "table": "accounts",
+    "field": "owner",
+    "target": "workers",
+    "nullable": false
+  },
+  {
+    "table": "workLines",
+    "field": "worker",
+    "target": "workers",
+    "nullable": false
+  },
+  {
+    "table": "workLines",
+    "field": "project",
+    "target": "projects",
+    "nullable": false
+  },
+  {
+    "table": "fundReceipts",
+    "field": "project",
+    "target": "projects",
+    "nullable": false
+  }
+]
