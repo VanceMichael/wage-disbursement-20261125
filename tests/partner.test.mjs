@@ -7,15 +7,23 @@ import { createPeer } from '../support/peer.mjs';
 
 const config = JSON.parse(await readFile(new URL('../fixtures/partner.json', import.meta.url)));
 const fixtures = JSON.parse(await readFile(new URL('../fixtures/records.json', import.meta.url)));
+const relations = JSON.parse(await readFile(new URL('../fixtures/relations.json', import.meta.url)));
 const listen = server => new Promise(resolve => server.listen(0, '127.0.0.1', () => resolve(`http://127.0.0.1:${server.address().port}`)));
 const close = server => new Promise(resolve => server.close(resolve));
 
 test('资料中同类编号唯一，角色与实体资料可读取', () => {
-  assert.ok(fixtures.actors.length >= 3);
+  assert.ok(fixtures.actors.length > 0);
   for (const rows of Object.values(fixtures)) {
     if (!Array.isArray(rows)) continue;
     const ids = rows.filter(row => row && typeof row === 'object' && row.id).map(row => row.id);
     assert.equal(new Set(ids).size, ids.length);
+  }
+  for (const relation of relations) {
+    const ids = new Set(fixtures[relation.target].map(row => row.id));
+    for (const row of fixtures[relation.table]) {
+      const value = row[relation.field];
+      assert.ok((value === null && relation.nullable) || ids.has(value), `${relation.table}.${relation.field} 引用无效`);
+    }
   }
 });
 

@@ -54,7 +54,7 @@ export function createPeer(config, stateFile) {
         const items = body[config.group];
         if (typeof key !== 'string' || !key || !Array.isArray(items) || !items.length || items.length > 100) return send(res, 400, { error: '请求键或逐项资料不符' });
         const ids = items.map(item => item?.[config.id]);
-        if (ids.some(id => typeof id !== 'string' || !/^[A-Za-z0-9_.:-]{1,100}$/.test(id)) || new Set(ids).size !== ids.length) return send(res, 400, { error: '逐项编号不符或重复' });
+        if (ids.some(id => typeof id !== 'string' || !/^[A-Za-z0-9_.:-]{1,100}$/.test(id) || ['__proto__', 'constructor', 'prototype'].includes(id)) || new Set(ids).size !== ids.length) return send(res, 400, { error: '逐项编号不符或重复' });
         const fingerprint = JSON.stringify(items);
         const previous = state.batches[key];
         if (previous) return send(res, previous.fingerprint === fingerprint ? 200 : 409, previous.fingerprint === fingerprint ? { results: previous.ids.map(id => state.operations[id]) } : { error: '同一请求键对应不同资料' });
